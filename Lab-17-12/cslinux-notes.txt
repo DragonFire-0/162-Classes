@@ -13,5 +13,3 @@ sftp glen.sasek@cslinux.pcc.edu
 cd CS-162/Lab-17-12
 put *
 
-
-

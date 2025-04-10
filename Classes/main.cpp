@@ -1,16 +1,17 @@
 //*****************************************************************************
 // Author: Chancellor Field
-// Assignment:
+// Assignment: Assignment 1 Classes
 // Date:
-// Description:
+// Description: 
 // Sources: 
 //*****************************************************************************
 
-#include <iostream>
+#include <iostream> //May not be needed
+#include "main.h"
+#include "tasklist.cpp"
 
 using namespace std;
 
 int main() {
-  cout << "Hello, World!" << endl;
-  return 0;
+    
 }
