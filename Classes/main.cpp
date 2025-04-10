@@ -6,7 +6,6 @@
 // Sources: 
 //*****************************************************************************
 
-#include <iostream> //May not be needed
 #include "main.h"
 #include "tasklist.cpp"
 
@@ -14,7 +13,7 @@ using namespace std;
 
 int main() {
     //Variable initilization
-    char controlChar = '';
+    char controlChar = {0};
 
     //Welcome message
     cout << "Welcome!" << endl
@@ -37,8 +36,8 @@ char mainDirec(){
     << "(e)Remove tasks by index" << endl
     << "(q)Quit" << endl;
     
-    char controlChar = '';
+    char controlChar = {0};
     cin >> controlChar;
     cout << endl;
-    return controlChar
+    return controlChar;
 }
