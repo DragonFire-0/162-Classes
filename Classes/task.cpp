@@ -1,76 +1,71 @@
-#ifndef TASK_H
-#define TASK_H
 
 #include <iostream>
 #include "task.h"
 
+using namespace std;
+
 //Default constructor
-Task::Task(){
-    Day = -1;
-    [MAX_CHAR] taskName = {0};
-    duration = -1;
-    [MAX_CHAR] personName = {0};
-    category = -1;
-}
 
 //Calls all individual functions
-void setAll(int DayTS, char[] NTS, int DurTS, char[] PTS, int CTS){
+void Task::setAll(int DayTS, char NTS[], int DurTS, char PTS[], int CTS){
     setDay(DayTS);
     setName(NTS);
     setDuration(DurTS);
     setPerson(PTS);
-    setCat(CTS)
+    setCat(CTS);
 }
 
-void setDay(int DTS){
+void Task::setDay(int DTS){
     day = DTS;
 }
 
-void setName(char[] NTS){
-    taskName = NTS;
+void Task::setName(char NTS[]){
+    for (int i = 0; i < MAX_CHAR; i++){
+        taskName[i] = NTS[i];
+    }
 }
 
-void setDuration(int DTS){
+void Task::setDuration(int DTS){
     duration = DTS;
 }
 
-void setPerson(char[] PTS){
-    personName = PTS;
+void Task::setPerson(char PTS[]){
+    for (int i = 0; i < MAX_CHAR; i++){
+        personName[i] = PTS[i];
+    }
 }
 
-void setCat(int CTS){
+void Task::setCat(int CTS){
     category = CTS;
 }
 
 //28;Replace ventilation filters;2;Carlos Johnston;Maintenance
-void printTask(){
+void Task::printTask(std::ostream &os){
     os.width(5); os << day;
-    os.width(25); os << taksName;
+    os.width(25); os << taskName;
     os.width(10); os << duration;
     os.width(25); os << personName;
     
     //0-Operations, 1-Maintenance, 2-Inventory, 3-Communications, and 4-Others
-    char[MAX_CHAR] cat = {0};
+    char cat[MAX_CHAR] = {0};
     if (category == 0){
-        cat = "Operations";
+        os.width(20); os << "Operations" << endl;
     }
     else if (category == 1){
-        cat = "Maintenance";
+        os.width(20); os << "Maintenance" << endl;
     }
     else if (category == 2){
-        cat = "Inventory";
+        os.width(20); os << "Inventory" << endl;
     }
     else if (category == 3){
-        cat = "Communications";
+        os.width(20); os << "Communications" << endl;
     }
     else if (category == 4){
-        cat = "Others";
+        os.width(20); os << "Others" << endl;
     }
     else {
-        cat = "No category"
+        os.width(20); os << "No category" << endl;
     }
     
-    os.width(20); os << cat << endl;
+    
 }
-
-#endif

@@ -1,7 +1,6 @@
 
 //Needs a variable for Day, task name, duration, person name, category
 
-
 #ifndef TASK_H
 #define TASK_H
 
@@ -10,20 +9,21 @@
 
 class Task {   // can also use struct Activity
 public:
-    int MAX_CHAR = 30;
-    void setAll(int DayTS, char[] NTS, int DurTS, char[] PTS, int CTS);
+    Task();//Default constrontor
+    static const size_t MAX_CHAR = 50;
+    void setAll(int DayTS, char NTS[], int DurTS, char PTS[], int CTS);
     void setDay(int DTS);
-    void setName(char[] NTS);
+    void setName(char NTS[]);
     void setDuration(int DTS);
-    void setPerson(char[] PTS);
+    void setPerson(char PTS[]);
     void setCat(int CTS);
-    void printTask();
+    void printTask(std::ostream &os);
 private:
-    int day;
-    char[MAX_CHAR] taskName;
-    int duration;
-    char[MAX_CHAR] personName;
-    int category;
+    int day = -1;
+    char taskName[MAX_CHAR] = {0};
+    int duration = -1;
+    char personName[MAX_CHAR] = {0};
+    int category = -1;
 };
 
 #endif
