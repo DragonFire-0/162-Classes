@@ -47,6 +47,10 @@ void Task::setAll(){
     cin.ignore(1);
     writeSpace(taskName);
 
+    cout << "Enter the person's name (50 characters or less): ";
+    cin.ignore(1);
+    writeSpace(personName);
+    
     while (!valid){
         cout << "Enter the number of hours (whole numbers between 1 and 10): ";
         cin >> duration;
@@ -59,10 +63,6 @@ void Task::setAll(){
     }
     valid = false;
 
-    cout << "Enter the person's name (50 characters or less): ";
-    cin.ignore(1);
-    writeSpace(personName);
-    
     while (!valid){
         cout << "Enter the task type 0-Operations, 1-Maintenance, 2-Inventory, 3-Communications, and 4-Others): ";
         cin >> category;
@@ -73,6 +73,8 @@ void Task::setAll(){
             valid = true;
         } 
     }
+
+    cout << endl << "Task Added!" << endl << endl;
 }
 
 void Task::setDay(int DTS){
