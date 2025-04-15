@@ -5,19 +5,31 @@
 #define TASK_H
 
 #include <iostream>
-# include <cstddef> // for https://en.cppreference.com/w/cpp/types/size_t
+#include <cstddef> // for https://en.cppreference.com/w/cpp/types/size_t
+#include <cstring> // https://en.cppreference.com/w/cpp/header/cstring
 
 class Task {   // can also use struct Activity
 public:
-    Task();//Default constrontor
     static const size_t MAX_CHAR = 50;
-    void setAll(int DayTS, char NTS[], int DurTS, char PTS[], int CTS);
+
+    //Assignment Operator Overloading
+    Task& operator=(const Task& other);
+
+    //Functions
+    //Set functions
+    void setAll();
     void setDay(int DTS);
     void setName(char NTS[]);
     void setDuration(int DTS);
     void setPerson(char PTS[]);
     void setCat(int CTS);
+    //Print function
     void printTask(std::ostream &os);
+    //Get functions
+    int getDay();
+    char* getName();
+    //Makes the user able to write with spaces
+    void writeSpace(char arr[]);
 private:
     int day = -1;
     char taskName[MAX_CHAR] = {0};

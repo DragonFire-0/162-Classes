@@ -7,23 +7,51 @@
 //*****************************************************************************
 
 #include "main.h"
-#include "tasklist.cpp"
+#include <fstream>
+#include <cstring> // https://en.cppreference.com/w/cpp/header/cstring
+#include "main.h"
 
 using namespace std;
 
 int main() {
     //Variable initilization
     char controlChar = {0};
+    Tasklist fulList;
 
     //Welcome message
     cout << "Welcome!" << endl
     << "This program will help you manage your tasks for this Space Station." << endl;
     
+    ifstream fin = ifstream("tasks.txt"); 
+    fulList.loadTask(fin);
 
     //Main loop
     while (controlChar != 'q'){
         controlChar = mainDirec();
+        
+        if(controlChar == 'a'){//Add a new task
+            fulList.addTask();
+        }
 
+        else if(controlChar == 'b'){//List tasks by name
+            fulList.printAll(cout);
+        }
+
+        else if(controlChar == 'c'){//List tasks by Type
+
+        }
+        
+        else if(controlChar == 'd'){//Search by task name
+
+        }
+        
+        else if(controlChar == 'e'){//Remove tasks by index
+
+        }
+        
+        else if(controlChar != 'q'){//Error message
+            cout << "Invalid option!! Please try again!" << endl;
+        }
     }
 }
 

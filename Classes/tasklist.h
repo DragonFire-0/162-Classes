@@ -1,18 +1,29 @@
-
-//Needs to keep an array of tasks
+//Keeps an array of tasks
 
 #ifndef TASKLIST_H
 #define TASKLIST_H
 
 #include <iostream>
+#include <fstream>
 #include <cstddef> // for https://en.cppreference.com/w/cpp/types/size_t
-#include "task.cpp"
+#include "task.h"
+using namespace std;
 
 class Tasklist { 
 public:
-    int MAX_LISTSIZE = 30;
+    static const size_t MAX_LISTSIZE = 30;
+    void loadTask(istream &fin);//Done
+    void insert(Task tempAct, size_t pos);//Done
+    void printAll(std::ostream &os);//Done
+    void addTask();//Done
+    void remTask();//Not Done
 private:
-    task[MAX_LISTSIZE] tasklist;
+    //Function
+    void sortTask();//Not Done, not needed?
+    //Variable
+    char baseData[5][Task::MAX_CHAR] = {}; //Array for the inital input
+    Task fullList[MAX_LISTSIZE]; //List of tasks
+    size_t size = 0; //Size of the list
 };
 
 #endif

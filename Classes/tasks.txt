@@ -1,4 +1,4 @@
-Day;task name;duration;person name;category
+Day;Task name;Duration;Person name;Category
 5;Replace ventilation filters;2;Robbie Mitchell;1
 28;Replace ventilation filters;2;Carlos Johnston;1
 14;Replace ventilation ion filters;2;Karma Thames;1
