@@ -16,10 +16,12 @@ public:
     void insert(Task tempAct, size_t pos);//Done
     void printAll(std::ostream &os);//Done
     void addTask();//Done
-    void remTask();//Not Done
-private:
+    void listType();
+    void searchName();
+    void remTask();//Done
+    private:
     //Function
-    void sortTask();//Not Done, not needed?
+    void printGuide(std::ostream &os);
     //Variable
     char baseData[5][Task::MAX_CHAR] = {}; //Array for the inital input
     Task fullList[MAX_LISTSIZE]; //List of tasks

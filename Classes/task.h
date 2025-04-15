@@ -26,8 +26,8 @@ public:
     //Print function
     void printTask(std::ostream &os);
     //Get functions
-    int getDay();
     char* getName();
+    int getCat();
     //Makes the user able to write with spaces
     void writeSpace(char arr[]);
 private:

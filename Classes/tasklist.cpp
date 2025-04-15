@@ -70,19 +70,23 @@ void Tasklist::insert(Task tempTask, size_t pos) {
 
 void Tasklist::printAll(std::ostream &os){
     
-    os.width(7); os << baseData[0];
-    os.width(35); os << baseData[1];
-    os.width(10); os << baseData[2];
-    os.width(35); os << baseData[3];
-    os.width(20); os << baseData[4] << endl << endl;
+    printGuide(os);
 
     for (int i = 0; i < MAX_LISTSIZE; i++){
-        if(fullList[i].getDay() >= 0){
+        if(fullList[i].getCat() >= 0){
             os.width(2); os << i + 1; 
             fullList[i].printTask(os);
         }
     }
     os << endl;
+}
+
+void Tasklist::printGuide(std::ostream &os){
+    os.width(7); os << baseData[0];
+    os.width(35); os << baseData[1];
+    os.width(10); os << baseData[2];
+    os.width(35); os << baseData[3];
+    os.width(20); os << baseData[4] << endl << endl;
 }
 
 void Tasklist::addTask(){
@@ -108,6 +112,26 @@ void Tasklist::addTask(){
     insert(tempTask, pos);
     size++;
     //strcmp(tempTask.getName(), fullList[pos].getName()) > 0
+}
+
+void Tasklist::listType(){
+    int type = -1;
+    cout << "Enter Type number(0-Operations, 1-Maintenance, 2-Inventory, 3-Communications, and 4-Others): ";
+    cin >> type;
+
+    cout << endl;
+    printGuide(cout);
+    
+    for (int i = 0; i < size; i++){
+        if (fullList[i].getCat() == type){
+            fullList[i].printTask(cout);
+        }
+    }
+
+}
+
+void Tasklist::searchName(){
+
 }
 
 void Tasklist::remTask(){

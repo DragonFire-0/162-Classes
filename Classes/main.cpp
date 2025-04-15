@@ -37,8 +37,8 @@ int main() {
             fulList.printAll(cout);
         }
 
-        else if(controlChar == 'c'){//List tasks by Type
-
+        else if(controlChar == 'c'){//List tasks for a Type
+            fulList.listType();
         }
         
         else if(controlChar == 'd'){//Search by task name

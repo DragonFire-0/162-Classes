@@ -130,8 +130,8 @@ void Task::printTask(std::ostream &os){
     
 }
 
-int Task::getDay(){
-    return day;
+int Task::getCat(){
+    return category;
 }
 
 char* Task::getName(){
