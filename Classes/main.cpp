@@ -46,7 +46,7 @@ int main() {
         }
         
         else if(controlChar == 'e'){//Remove tasks by index
-
+            fulList.remTask();
         }
         
         else if(controlChar != 'q'){//Error message

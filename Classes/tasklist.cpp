@@ -109,3 +109,16 @@ void Tasklist::addTask(){
     size++;
     //strcmp(tempTask.getName(), fullList[pos].getName()) > 0
 }
+
+void Tasklist::remTask(){
+    int index = -1;
+    printAll(cout);
+    cout << "Enter index of task to remove: ";
+    cin >> index;
+    index--; //Puts index in line with the actual index
+    for (int i = 0; i < size; i++){
+        if (i >= index){
+            fullList[i] = fullList[i+1];
+        }
+    }
+}
