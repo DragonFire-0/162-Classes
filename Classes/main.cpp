@@ -42,7 +42,7 @@ int main() {
         }
         
         else if(controlChar == 'd'){//Search by task name
-
+            fulList.searchName();
         }
         
         else if(controlChar == 'e'){//Remove tasks by index

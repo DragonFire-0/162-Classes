@@ -20,7 +20,7 @@ public:
     void searchName();
     void remTask();//Done
     private:
-    //Function
+    //Functions
     void printGuide(std::ostream &os);
     //Variable
     char baseData[5][Task::MAX_CHAR] = {}; //Array for the inital input

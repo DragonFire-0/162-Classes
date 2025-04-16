@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include "tasklist.h"
 
 void Tasklist::loadTask(istream &fin){
@@ -130,7 +131,30 @@ void Tasklist::listType(){
 }
 
 void Tasklist::searchName(){
+    
+    char searchTerm[Task::MAX_CHAR];
 
+    cout << "Enter task name: ";
+    cin.ignore(1);
+    fullList[0].writeSpace(searchTerm);
+    printGuide(cout);
+
+    char* pch = NULL; //Char pointer
+    bool found = false;
+
+    for (int q = 0; q <= size; q++){
+        //Sets pch to first occurence of searchTerm in the name
+        pch = strstr (fullList[q].getName(), searchTerm); 
+        if (pch != NULL){ //If pch is not null
+        cout << q + 1;
+            fullList[q].printTask(cout);
+            found = true;
+        }
+    }
+    if (!found){
+        cout << "No task match found" << endl;
+    }
+    cout << endl;
 }
 
 void Tasklist::remTask(){
