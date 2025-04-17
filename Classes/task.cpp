@@ -20,15 +20,7 @@ Task& Task::operator=(const Task& other) {
     return *this;
 }
 
-//Gets user input to set the task
-/*Enter the day of the task (whole numbers between 1 and 30): 78
-Invalid day! Must be between 1 and 30 inclusive!
-Enter the day of the task (whole numbers between 1 and 30): 8
-Enter the task name (50 characters or less): Surface static discharge
-Enter the person’s name (50 characters or less): Steph Kalias
-Enter the number of hours (whole numbers between 1 and 10): 3
-Enter the task type 0-Operations, 1-Maintenance, 2-Inventory, 3-Communications, and 4-Others): 0
-*/
+
 void Task::setAll(){
     bool valid = false;
     while (!valid){
@@ -138,6 +130,14 @@ int Task::getCat(){
 
 char* Task::getName(){
     return taskName;
+}
+
+void Task::writeFile(ofstream &is, char const DELIMITER){
+    is << day << DELIMITER
+    << taskName << DELIMITER
+    << duration << DELIMITER
+    << personName << DELIMITER
+    << category;
 }
 
 //Insert a character array and it will write to it

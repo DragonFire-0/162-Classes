@@ -8,6 +8,10 @@
 #include <cstddef> // for https://en.cppreference.com/w/cpp/types/size_t
 #include <cstring> // https://en.cppreference.com/w/cpp/header/cstring
 
+#include <fstream>
+
+
+
 class Task {   // can also use struct Activity
 public:
     static const size_t MAX_CHAR = 50;
@@ -28,6 +32,9 @@ public:
     //Get functions
     char* getName();
     int getCat();
+    //Write function
+    void writeFile(std::ofstream &is, char const DELIMITER);
+
     //Makes the user able to write with spaces
     void writeSpace(char arr[]);
 private:

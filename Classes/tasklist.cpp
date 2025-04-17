@@ -60,6 +60,26 @@ void Tasklist::loadTask(istream &fin){
     }
 }
 
+void Tasklist::exportToFile(ofstream &is){
+    char const DELIMITER = ';';
+    
+    //Day;task name;duration;person name;category
+    is << baseData[0] << DELIMITER
+    << baseData[1] << DELIMITER
+    << baseData[2] << DELIMITER
+    << baseData[3] << DELIMITER
+    << baseData[4] << endl;
+
+    for (int i = 0; i < size; i++){
+      fullList[i].writeFile(is, DELIMITER);
+      //If it is not the last activity make a new line
+      if (i < size-1){
+        is << endl;
+      }
+    }
+  
+  }
+
 void Tasklist::insert(Task tempTask, size_t pos) {
     for(size_t i = size + 1; i > pos; i-- ) {
         fullList[i] = fullList[i-1];
@@ -67,7 +87,6 @@ void Tasklist::insert(Task tempTask, size_t pos) {
     fullList[pos] = tempTask;
     size++;
 }
-
 
 void Tasklist::printAll(std::ostream &os){
     

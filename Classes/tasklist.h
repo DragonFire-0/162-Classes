@@ -13,13 +13,15 @@ class Tasklist {
 public:
     static const size_t MAX_LISTSIZE = 30;
     void loadTask(istream &fin);//Done
+    void exportToFile(ofstream &is);//Not Done
     void insert(Task tempAct, size_t pos);//Done
     void printAll(std::ostream &os);//Done
     void addTask();//Done
     void listType();//Done
-    void searchName();
+    void searchName();//Somewhat working
     void remTask();//Done
-    private:
+    
+private:
     //Functions
     void printGuide(std::ostream &os);
     //Variable

@@ -53,6 +53,10 @@ int main() {
             cout << "Invalid option!! Please try again!" << endl;
         }
     }
+
+    //File writing
+    ofstream fout = ofstream("task.txt"); 
+    fulList.exportToFile(fout);
 }
 
 char mainDirec(){ 
