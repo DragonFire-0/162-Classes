@@ -51,7 +51,7 @@ Tasklist::Tasklist(istream &fin){
             if (pos == size) {
                 next = false;
             }
-            //Writes alphabetically (Possibly reverse)
+            //Writes alphabetically
             else if(strcmp(tempTask.getName(), fullList[pos].getName()) > 0) {
                 pos++;
             } 
@@ -125,7 +125,7 @@ void Tasklist::addTask(){
         if (pos == size) {
             next = false;
         }
-        //Writes alphabetically (Possibly reverse)
+        //Writes alphabetically
         else if(strcmp(tempTask.getName(), fullList[pos].getName()) > 0) {
             pos++;
         } 
@@ -170,7 +170,7 @@ void Tasklist::searchName(){
 
     for (int q = 0; q <= size; q++){
         //Sets pch to first occurence of searchTerm in the name
-        pch = strstr (fullList[q].getName(), searchTerm); 
+        pch = strstr (fullList[q].getTaskName(), searchTerm); 
         if (pch != NULL){ //If pch is not null
         cout << q + 1;
             fullList[q].printTask(cout);

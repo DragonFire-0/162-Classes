@@ -128,6 +128,10 @@ int Task::getCat(){
     return category;
 }
 
+char* Task::getTaskName(){
+    return taskName;
+}
+
 char* Task::getName(){
     return personName;
 }

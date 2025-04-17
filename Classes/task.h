@@ -30,6 +30,7 @@ public:
     //Print function
     void printTask(std::ostream &os);
     //Get functions
+    char* getTaskName();
     char* getName();
     int getCat();
     //Write function
