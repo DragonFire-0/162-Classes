@@ -168,12 +168,12 @@ void Tasklist::searchName(){
     char* pch = NULL; //Char pointer
     bool found = false;
 
-    for (int q = 0; q <= size; q++){
+    for (int i = 0; i < size; i++){
         //Sets pch to first occurence of searchTerm in the name
-        pch = strstr (fullList[q].getTaskName(), searchTerm); 
+        pch = strstr (fullList[i].getTaskName(), searchTerm); 
         if (pch != NULL){ //If pch is not null
-        cout << q + 1;
-            fullList[q].printTask(cout);
+        cout << i + 1;
+            fullList[i].printTask(cout);
             found = true;
         }
     }
