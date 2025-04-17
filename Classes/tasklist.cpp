@@ -4,7 +4,11 @@
 #include <cstring>
 #include "tasklist.h"
 
-void Tasklist::loadTask(istream &fin){
+Tasklist::Tasklist(){
+    
+}
+
+Tasklist::Tasklist(istream &fin){
     char const DELIMITER = ';';
 
     //Reads in what all the data is
@@ -78,7 +82,8 @@ void Tasklist::exportToFile(ofstream &is){
       }
     }
   
-  }
+}
+
 
 void Tasklist::insert(Task tempTask, size_t pos) {
     for(size_t i = size + 1; i > pos; i-- ) {
@@ -131,7 +136,9 @@ void Tasklist::addTask(){
 
     insert(tempTask, pos);
     size++;
-    //strcmp(tempTask.getName(), fullList[pos].getName()) > 0
+    
+    printAll(cout);
+
 }
 
 void Tasklist::listType(){
@@ -187,4 +194,5 @@ void Tasklist::remTask(){
             fullList[i] = fullList[i+1];
         }
     }
+    cout << endl << "Task Removed" << endl;
 }

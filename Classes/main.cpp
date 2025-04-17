@@ -11,19 +11,22 @@
 #include <cstring> // https://en.cppreference.com/w/cpp/header/cstring
 #include "main.h"
 
+//To Do:
+//Fix search function
+
 using namespace std;
 
 int main() {
     //Variable initilization
     char controlChar = {0};
-    Tasklist fulList;
 
+    ifstream fin = ifstream("tasks.txt"); 
+    Tasklist fulList(fin);
+    
     //Welcome message
     cout << "Welcome!" << endl
     << "This program will help you manage your tasks for this Space Station." << endl;
     
-    ifstream fin = ifstream("tasks.txt"); 
-    fulList.loadTask(fin);
 
     //Main loop
     while (controlChar != 'q'){

@@ -12,7 +12,8 @@ using namespace std;
 class Tasklist { 
 public:
     static const size_t MAX_LISTSIZE = 30;
-    void loadTask(istream &fin);//Done
+    Tasklist(); //Default constructor
+    Tasklist(istream &fin); //Constructor using fin
     void exportToFile(ofstream &is);//Not Done
     void insert(Task tempAct, size_t pos);//Done
     void printAll(std::ostream &os);//Done

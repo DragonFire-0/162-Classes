@@ -129,7 +129,7 @@ int Task::getCat(){
 }
 
 char* Task::getName(){
-    return taskName;
+    return personName;
 }
 
 void Task::writeFile(ofstream &is, char const DELIMITER){
