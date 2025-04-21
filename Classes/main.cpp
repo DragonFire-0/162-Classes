@@ -58,7 +58,7 @@ int main() {
     }
 
     //File writing
-    ofstream fout = ofstream("task.txt"); 
+    ofstream fout = ofstream("tasks.txt"); 
     fulList.exportToFile(fout);
 }
 
