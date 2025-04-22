@@ -1,18 +1,23 @@
 //*****************************************************************************
 // Author: Chancellor Field
-// Assignment: Assignment 1 Classes
+// Assignment: Assignment 2 Dynamice Memory
 // Date:
 // Description: 
 // Sources: 
 //*****************************************************************************
 
+//To do
+//Fix search function (strstr functon needs to be used)
+//Make strings dynamically allocated (cstring)
+//You are required to use a dynamic array of Task to implement TaskList.
+//Use destructor to deallocate the dynamic memory for the object.
+//Make sure no memory leaks; valgrind --tool=memcheck --leak-check=full executable-file. 
+
+
 #include "main.h"
 #include <fstream>
 #include <cstring> // https://en.cppreference.com/w/cpp/header/cstring
 #include "main.h"
-
-//To Do:
-//Fix search function
 
 using namespace std;
 
