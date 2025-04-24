@@ -10,32 +10,33 @@ Tasklist::Tasklist(){
 
 Tasklist::Tasklist(istream &fin){
     char const DELIMITER = ';';
-
+    static const size_t MAX_CHAR = 50;
     //Reads in what all the data is
-    fin.getline(baseData[0], Task::MAX_CHAR, DELIMITER);
-    fin.getline(baseData[1], Task::MAX_CHAR, DELIMITER);
-    fin.getline(baseData[2], Task::MAX_CHAR, DELIMITER);
-    fin.getline(baseData[3], Task::MAX_CHAR, DELIMITER);
-    fin.getline(baseData[4], Task::MAX_CHAR);
+    fin.getline(baseData[0], MAX_CHAR, DELIMITER);
+    fin.getline(baseData[1], MAX_CHAR, DELIMITER);
+    fin.getline(baseData[2], MAX_CHAR, DELIMITER);
+    fin.getline(baseData[3], MAX_CHAR, DELIMITER);
+    fin.getline(baseData[4], MAX_CHAR);
+
 
     while(fin && !fin.peek() != EOF){
         Task tempTask; //Day 1,name a, duration 1, person a, catagory 1
         int tempInt = 0;
-        char tempChar[Task::MAX_CHAR] = {0};
+        char tempChar[MAX_CHAR] = {0};
 
         // read data from file
         fin >> tempInt; //Sets the input into a temp int
         tempTask.setDay(tempInt); //Sets the day to the temp int
         fin.get(); // Remove delimiter
 
-        fin.getline(tempChar, Task::MAX_CHAR, DELIMITER);
+        fin.getline(tempChar, MAX_CHAR, DELIMITER);
         tempTask.setName(tempChar);
-
+        
         fin >> tempInt; //Sets the input into a temp int
         tempTask.setDuration(tempInt); //Sets the duration to the temp int
         fin.get(); // Remove delimiter
         
-        fin.getline(tempChar, Task::MAX_CHAR, DELIMITER);
+        fin.getline(tempChar, MAX_CHAR, DELIMITER);
         tempTask.setPerson(tempChar);
         
         fin >> tempInt; //Sets the input into a temp int

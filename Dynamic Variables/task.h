@@ -15,11 +15,17 @@
 class Task {   // can also use struct Activity
 public:
     static const size_t MAX_CHAR = 50;
-
+    //Default constructor 
+    //Not needed?
+    //Task();
+    
+    //Destructor
+    ~Task();
     //Assignment Operator Overloading
     Task& operator=(const Task& other);
 
     //Functions
+    
     //Set functions
     void setAll();
     void setDay(int DTS);
@@ -27,23 +33,34 @@ public:
     void setDuration(int DTS);
     void setPerson(char PTS[]);
     void setCat(int CTS);
+    
     //Print function
     void printTask(std::ostream &os);
+    
     //Get functions
     char* getTaskName();
     char* getName();
     int getCat();
+    
     //Write function
     void writeFile(std::ofstream &is, char const DELIMITER);
 
     //Makes the user able to write with spaces
     void writeSpace(char arr[]);
+    //Gets the size of a character array
+    int getCAS(char arr[]);
 private:
     int day = -1;
-    char taskName[MAX_CHAR] = {0};
     int duration = -1;
-    char personName[MAX_CHAR] = {0};
     int category = -1;
+
+    char *taskName = nullptr;
+    int taskSize = 0; //Size of the taskName array
+    //char taskName[MAX_CHAR] = {0};
+    
+    char *personName = nullptr;
+    int perSize = 0; //Size of the personName array
+    //char personName[MAX_CHAR] = {0};
 };
 
 #endif

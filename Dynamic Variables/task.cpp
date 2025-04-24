@@ -20,6 +20,11 @@ Task& Task::operator=(const Task& other) {
     return *this;
 }
 
+//Destructor, deletes dynamic variables
+Task::~Task(){
+    delete taskName;
+    delete personName;
+}
 
 void Task::setAll(){
     bool valid = false;
@@ -73,10 +78,11 @@ void Task::setDay(int DTS){
     day = DTS;
 }
 
-void Task::setName(char NTS[]){
-    for (int i = 0; i < MAX_CHAR; i++){
-        taskName[i] = NTS[i];
-    }
+void Task::setName(char* NTS){
+    //Makes a new object, nameTask, that is the size of NTS
+    taskSize = getCAS(NTS);
+    taskName = new char[taskSize];
+    strcpy(taskName, NTS);
 }
 
 void Task::setDuration(int DTS){
@@ -154,6 +160,15 @@ void Task::writeSpace(char arr[]){
       arr[cNum] = ch;
       cNum++;
     }
+}
+
+int Task::getCAS(char arr[]){
+    int i = 0;
+    //Runs through the array until the array has an unset variable
+    while (arr[i] != '\0'){
+        i++;
+    }
+    return i;
 }
 
 #endif
