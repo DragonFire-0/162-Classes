@@ -12,18 +12,46 @@ Task& Task::operator=(const Task& other) {
     //If the task to be copied is not the same as this task
     if (this != &other) { 
         day = other.day;
-        strcpy(taskName, other.taskName);
         duration = other.duration;
-        strcpy(personName, other.personName);
         category = other.category;
+
+        if (taskName != nullptr){
+            delete [] taskName;
+            taskName = nullptr;
+        }
+
+
+        taskSize = getCAS(other.taskName);
+        //taskName = new char[taskSize];
+        
+
+
+
+        //cout << "Task size: " << taskSize << endl;
+        //Makes taskname a character array of size taskSize
+        //Copies the name to set into task name
+        //strcpy(taskName, other.taskName);
+        
+        //setName(other.taskName);
+        //setPerson(other.personName);
+        
+        //strcpy(taskName, other.taskName);
+        //strcpy(personName, other.personName);
     }
     return *this;
 }
 
 //Destructor, deletes dynamic variables
 Task::~Task(){
-    delete taskName;
-    delete personName;
+    if (taskName != nullptr){
+        delete [] taskName;
+        taskName = nullptr;
+    }
+
+    if (personName != nullptr){
+        delete [] personName;
+        taskName = nullptr;
+    }
 }
 
 void Task::setAll(){
@@ -79,9 +107,17 @@ void Task::setDay(int DTS){
 }
 
 void Task::setName(char* NTS){
-    //Makes a new object, nameTask, that is the size of NTS
+    //Deletes task name if it is not a nullptr
+    if (taskName != nullptr){
+        delete [] taskName;
+        taskName = nullptr;
+    }
+    //Gets the size of the name to set
     taskSize = getCAS(NTS);
+    //cout << taskSize << endl;
+    //Makes taskname a character array of size taskSize
     taskName = new char[taskSize];
+    //Copies the name to set into task name
     strcpy(taskName, NTS);
 }
 
@@ -89,17 +125,21 @@ void Task::setDuration(int DTS){
     duration = DTS;
 }
 
-void Task::setPerson(char PTS[]){
-    for (int i = 0; i < MAX_CHAR; i++){
-        personName[i] = PTS[i];
+void Task::setPerson(char* PTS){
+    //Deletes task name if it is not a nullptr
+    if (personName != nullptr){
+        delete [] personName;
+        personName = nullptr;
     }
+    perSize = getCAS(PTS);
+    personName = new char[perSize];
+    strcpy(personName, PTS);
 }
 
 void Task::setCat(int CTS){
     category = CTS;
 }
 
-//28;Replace ventilation filters;2;Carlos Johnston;Maintenance
 void Task::printTask(std::ostream &os){
     os.width(5); os << day;
     os.width(35); os << taskName;
@@ -164,10 +204,15 @@ void Task::writeSpace(char arr[]){
 
 int Task::getCAS(char arr[]){
     int i = 0;
+    //Checks if arr is allocated
+    if (arr == nullptr){
+        return 0;
+    }
     //Runs through the array until the array has an unset variable
     while (arr[i] != '\0'){
         i++;
     }
+    i++;
     return i;
 }
 

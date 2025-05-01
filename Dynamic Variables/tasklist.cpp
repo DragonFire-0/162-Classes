@@ -21,26 +21,27 @@ Tasklist::Tasklist(istream &fin){
 
     while(fin && !fin.peek() != EOF){
         Task tempTask; //Day 1,name a, duration 1, person a, catagory 1
+        Task* ptrTempTask = new Task;
         int tempInt = 0;
         char tempChar[MAX_CHAR] = {0};
 
         // read data from file
         fin >> tempInt; //Sets the input into a temp int
-        tempTask.setDay(tempInt); //Sets the day to the temp int
+        ptrTempTask->setDay(tempInt); //Sets the day to the temp int
         fin.get(); // Remove delimiter
 
         fin.getline(tempChar, MAX_CHAR, DELIMITER);
-        tempTask.setName(tempChar);
+        ptrTempTask->setName(tempChar);
         
         fin >> tempInt; //Sets the input into a temp int
-        tempTask.setDuration(tempInt); //Sets the duration to the temp int
+        ptrTempTask->setDuration(tempInt); //Sets the duration to the temp int
         fin.get(); // Remove delimiter
         
         fin.getline(tempChar, MAX_CHAR, DELIMITER);
-        tempTask.setPerson(tempChar);
+        ptrTempTask->setPerson(tempChar);
         
         fin >> tempInt; //Sets the input into a temp int
-        tempTask.setCat(tempInt); //Sets the catagory to the temp int
+        ptrTempTask->setCat(tempInt); //Sets the catagory to the temp int
         fin.get(); // Remove delimiter
 
         //tempTask should now be full
@@ -53,15 +54,19 @@ Tasklist::Tasklist(istream &fin){
                 next = false;
             }
             //Writes alphabetically
-            else if(strcmp(tempTask.getName(), fullList[pos].getName()) > 0) {
-                pos++;
-            } 
+            
+            //else if(strcmp(ptrTempTask->getName(), fullList[pos].getName()) > 0) {
+            //    pos++;
+            //} 
+            
             else {
                 next = false;
             }
         }
 
-        insert(tempTask, pos);
+        //Getting coppied into insert?
+        insert(ptrTempTask, pos);
+        delete ptrTempTask;
     }
 }
 
@@ -86,11 +91,12 @@ void Tasklist::exportToFile(ofstream &is){
 }
 
 
-void Tasklist::insert(Task tempTask, size_t pos) {
+void Tasklist::insert(Task* tempTask, size_t pos) {
     for(size_t i = size + 1; i > pos; i-- ) {
         fullList[i] = fullList[i-1];
     }
-    fullList[pos] = tempTask;
+    
+    fullList[pos] = *tempTask;
     size++;
 }
 
@@ -127,15 +133,17 @@ void Tasklist::addTask(){
             next = false;
         }
         //Writes alphabetically
-        else if(strcmp(tempTask.getName(), fullList[pos].getName()) > 0) {
-            pos++;
-        } 
+        
+        //else if(strcmp(tempTask.getName(), fullList[pos].getName()) > 0) {
+        //    pos++;
+        //} 
+        
         else {
             next = false;
         }
     }
 
-    insert(tempTask, pos);
+    //insert(tempTask, pos);
     size++;
     
     printAll(cout);
@@ -182,6 +190,7 @@ void Tasklist::searchName(){
         cout << "No task match found" << endl;
     }
     cout << endl;
+    delete[] pch;
 }
 
 void Tasklist::remTask(){

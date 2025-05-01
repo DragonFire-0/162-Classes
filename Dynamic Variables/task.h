@@ -21,17 +21,18 @@ public:
     
     //Destructor
     ~Task();
+
     //Assignment Operator Overloading
     Task& operator=(const Task& other);
 
     //Functions
     
-    //Set functions
+    //To Set functions
     void setAll();
     void setDay(int DTS);
-    void setName(char NTS[]);
+    void setName(char* NTS);
     void setDuration(int DTS);
-    void setPerson(char PTS[]);
+    void setPerson(char* PTS);
     void setCat(int CTS);
     
     //Print function
@@ -47,7 +48,7 @@ public:
 
     //Makes the user able to write with spaces
     void writeSpace(char arr[]);
-    //Gets the size of a character array
+    //Get character array size
     int getCAS(char arr[]);
 private:
     int day = -1;
