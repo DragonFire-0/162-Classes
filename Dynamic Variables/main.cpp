@@ -63,8 +63,8 @@ int main() {
     }
 
     //File writing
-    ofstream fout = ofstream("task.txt"); 
-    fulList.exportToFile(fout);
+    //ofstream fout = ofstream("task.txt"); 
+    //fulList.exportToFile(fout);
 }
 
 char mainDirec(){ 

@@ -15,28 +15,39 @@ Task& Task::operator=(const Task& other) {
         duration = other.duration;
         category = other.category;
 
+        //deletes task name if it is not a null pointer
         if (taskName != nullptr){
             delete [] taskName;
             taskName = nullptr;
         }
 
+        if (other.taskName != nullptr){
+        taskSize = other.taskSize;
+        taskName = new char[taskSize];
+        strcpy(taskName, other.taskName);
+        }
 
-        taskSize = getCAS(other.taskName);
-        //taskName = new char[taskSize];
-        
-
-        //cout << "Task size: " << taskSize << endl;
-        //Makes taskname a character array of size taskSize
-        //Copies the name to set into task name
-        //strcpy(taskName, other.taskName);
-        
-        //setName(other.taskName);
-        //setPerson(other.personName);
-        
-        //strcpy(taskName, other.taskName);
-        //strcpy(personName, other.personName);
+        if (other.personName != nullptr){
+        perSize = other.perSize;
+        personName = new char[perSize];
+        strcpy(personName, other.personName);
+        }
     }
     return *this;
+}
+
+//Default constructor (Not doing anything)
+Task::Task(){}
+
+//Copy constructor
+Task::Task(const Task& TaskTBC){
+    day = TaskTBC.day;
+    duration = TaskTBC.duration;
+    category = TaskTBC.category;
+    taskName = TaskTBC.taskName;
+    taskSize = TaskTBC.taskSize;
+    personName = TaskTBC.personName;
+    perSize = TaskTBC.perSize;
 }
 
 //Destructor, deletes dynamic variables

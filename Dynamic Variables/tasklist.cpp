@@ -20,8 +20,12 @@ Tasklist::Tasklist(istream &fin){
 
 
     while(fin && !fin.peek() != EOF){
-        Task tempTask; //Day 1,name a, duration 1, person a, catagory 1
+        //Variables needed
+        //Makes a temp task
+        Task tempTask; //int Day, char[] name, int duration, char[] person, int catagory
+        //Makes a task pointer
         Task* ptrTempTask = new Task;
+        //Temporary int and char array
         int tempInt = 0;
         char tempChar[MAX_CHAR] = {0};
 
@@ -50,11 +54,11 @@ Tasklist::Tasklist(istream &fin){
 
         bool next = true;
         while(next) {
-            if (pos == size) {
+            if (pos >= size) {
                 next = false;
             }
-            //Writes alphabetically
             
+            //Writes alphabetically (Not working and not needed?)
             //else if(strcmp(ptrTempTask->getName(), fullList[pos].getName()) > 0) {
             //    pos++;
             //} 
@@ -64,8 +68,8 @@ Tasklist::Tasklist(istream &fin){
             }
         }
 
-        //Getting coppied into insert?
         insert(ptrTempTask, pos);
+        
         delete ptrTempTask;
     }
 }

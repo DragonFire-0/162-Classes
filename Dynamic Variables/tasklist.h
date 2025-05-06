@@ -17,10 +17,11 @@ public:
     void exportToFile(ofstream &is);//Not Done
     void insert(Task* tempAct, size_t pos);//Done
     void printAll(std::ostream &os);//Done
-    void addTask();//Done
-    void listType();//Done
-    void searchName();//Somewhat working
-    void remTask();//Done
+    
+    void addTask();
+    void listType();
+    void searchName();
+    void remTask();
     
 private:
     //Functions

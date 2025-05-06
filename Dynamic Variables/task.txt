@@ -1,2 +1,2 @@
 Day;Task name;Duration;Person name;Category
-5;
+15;Data Transmission and Storage;4;Carlos Johnston;3

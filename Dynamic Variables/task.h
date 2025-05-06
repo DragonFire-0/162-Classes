@@ -16,9 +16,11 @@ class Task {   // can also use struct Activity
 public:
     static const size_t MAX_CHAR = 50;
     //Default constructor 
-    //Not needed?
-    //Task();
+    Task();
     
+    //Copy constructor
+    Task(const Task& TaskTBC);
+
     //Destructor
     ~Task();
 
@@ -57,11 +59,9 @@ private:
 
     char *taskName = nullptr;
     int taskSize = 0; //Size of the taskName array
-    //char taskName[MAX_CHAR] = {0};
     
     char *personName = nullptr;
     int perSize = 0; //Size of the personName array
-    //char personName[MAX_CHAR] = {0};
 };
 
 #endif
