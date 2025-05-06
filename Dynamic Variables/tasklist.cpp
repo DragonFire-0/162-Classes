@@ -59,9 +59,9 @@ Tasklist::Tasklist(istream &fin){
             }
             
             //Writes alphabetically (Not working and not needed?)
-            //else if(strcmp(ptrTempTask->getName(), fullList[pos].getName()) > 0) {
-            //    pos++;
-            //} 
+            else if(strcmp(ptrTempTask->getName(), fullList[pos].getName()) > 0) {
+                pos++;
+            } 
             
             else {
                 next = false;

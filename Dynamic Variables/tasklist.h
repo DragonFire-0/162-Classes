@@ -28,8 +28,10 @@ private:
     void printGuide(std::ostream &os);
     //Variable
     char baseData[5][50] = {}; //Array for the inital input
-    Task fullList[MAX_LISTSIZE]; //List of tasks
     size_t size = 0; //Size of the list
+    Task fullList[MAX_LISTSIZE]; //List of tasks
+    
+    //Task* ptrfullList = nullptr;
 };
 
 #endif

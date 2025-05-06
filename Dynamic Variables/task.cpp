@@ -20,17 +20,20 @@ Task& Task::operator=(const Task& other) {
             delete [] taskName;
             taskName = nullptr;
         }
-
-        if (other.taskName != nullptr){
-        taskSize = other.taskSize;
-        taskName = new char[taskSize];
-        strcpy(taskName, other.taskName);
+        if (personName != nullptr){
+            delete [] personName;
+            personName = nullptr;
         }
 
+        if (other.taskName != nullptr){
+            taskSize = other.taskSize;
+            taskName = new char[taskSize];
+            strcpy(taskName, other.taskName);
+        }
         if (other.personName != nullptr){
-        perSize = other.perSize;
-        personName = new char[perSize];
-        strcpy(personName, other.personName);
+            perSize = other.perSize;
+            personName = new char[perSize];
+            strcpy(personName, other.personName);
         }
     }
     return *this;
