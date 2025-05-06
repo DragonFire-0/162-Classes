@@ -25,8 +25,6 @@ Task& Task::operator=(const Task& other) {
         //taskName = new char[taskSize];
         
 
-
-
         //cout << "Task size: " << taskSize << endl;
         //Makes taskname a character array of size taskSize
         //Copies the name to set into task name
