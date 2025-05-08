@@ -46,7 +46,7 @@ public:
     void writeFile(std::ofstream &is, char const DELIMITER);
 
     //Makes the user able to write with spaces
-    void writeSpace(char* arr);
+    char* writeSpace();
     //Get character array size
     int getCAS(char arr[]);
 private:

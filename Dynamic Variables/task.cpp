@@ -86,11 +86,11 @@ void Task::setAll(){
         delete[] taskName;
     }
 
-    writeSpace(taskName);
+    taskName = writeSpace();
 
     cout << "Enter the person's name (50 characters or less): ";
     cin.ignore(1);
-    writeSpace(personName);
+    personName = writeSpace();
     
     while (!valid){
         cout << "Enter the number of hours (whole numbers between 1 and 10): ";
@@ -207,30 +207,17 @@ void Task::writeFile(ofstream &is, char const DELIMITER){
 }
 
 //Insert a character array and it will write to it
-void Task::writeSpace(char* arr){
+char* Task::writeSpace(){
     char ch; 
     int cNum = 0; //Character num
-    char* temp = nullptr;
+    char* arr = new char[50];
     
     //Writes until newline
     while (cin.get(ch) && ch != '\n') {
-        //Deletes temp if it is not a nullptr
-        if (temp != nullptr){
-            delete[] temp;
-        }
-        //Sets temp to cNum
-        temp = new char[cNum];//Makes a temp array the size of the num input
-
-        for (int i = 0; i < cNum; i++){
-            temp[i] = arr[i];//Sets temp to be the same as arr
-        }
-        temp[cNum] = ch;
-        if (arr != nullptr){
-            delete[] arr; //Deletes the array
-        }
-        //arr = temp; //Sets the array to temp 
+        arr[cNum] = ch; 
         cNum++;
     }
+    return arr;
 }
 
 int Task::getCAS(char arr[]){

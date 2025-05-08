@@ -4,7 +4,8 @@
 #include <cstring>
 #include "tasklist.h"
 
-Tasklist::Tasklist(){}
+Tasklist::Tasklist(){
+}
 
 Tasklist::Tasklist(istream &fin){
     //Declares fullPtrList as a task that is 'size' which should be 0
@@ -199,12 +200,19 @@ void Tasklist::searchName(){
 
     cout << "Enter task name: ";
     cin.ignore(1);
-    fullPtrList[0].writeSpace(searchTerm);
+    searchTerm = fullPtrList[0].writeSpace();
     printGuide(cout);
 
     char* stringPos = nullptr; //Char pointer
     bool found = false;
 
+    if (searchTerm != nullptr){
+        cout << searchTerm << endl;
+    }
+    else {
+        cout << "Nullptr" << endl;
+    }
+    /*
     for (int i = 0; i < size; i++){
         //Sets stringPos to first occurence of searchTerm in the name
         stringPos = strstr (fullPtrList[i].getTaskName(), searchTerm); //Giving errors
@@ -219,10 +227,14 @@ void Tasklist::searchName(){
     if (!found){
         cout << "No task match found" << endl;
     }
-
+    */
     cout << endl;
-    delete[] searchTerm;
-    delete[] stringPos;
+    if (searchTerm != nullptr){
+        delete[] searchTerm;
+    }
+    if (stringPos != nullptr){
+        delete[] stringPos;
+    }
 }
 
 void Tasklist::remTask(){
