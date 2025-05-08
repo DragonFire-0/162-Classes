@@ -4,26 +4,26 @@
 #include <cstring>
 #include "tasklist.h"
 
-Tasklist::Tasklist(){
-    
-}
+Tasklist::Tasklist(){}
 
 Tasklist::Tasklist(istream &fin){
+    //Declares fullPtrList as a task that is 'size' which should be 0
+    fullPtrList = new Task[size];
+    
+    
+    
     char const DELIMITER = ';';
     static const size_t MAX_CHAR = 50;
-    //Reads in what all the data is
-    fin.getline(baseData[0], MAX_CHAR, DELIMITER);
-    fin.getline(baseData[1], MAX_CHAR, DELIMITER);
-    fin.getline(baseData[2], MAX_CHAR, DELIMITER);
-    fin.getline(baseData[3], MAX_CHAR, DELIMITER);
-    fin.getline(baseData[4], MAX_CHAR);
+    //Reads in what all the data types are
+    fin.getline(baseData[0], MAX_CHAR, DELIMITER);  //Day
+    fin.getline(baseData[1], MAX_CHAR, DELIMITER);  //Task name
+    fin.getline(baseData[2], MAX_CHAR, DELIMITER);  //Duration
+    fin.getline(baseData[3], MAX_CHAR, DELIMITER);  //Person name
+    fin.getline(baseData[4], MAX_CHAR);             //Category
 
 
     while(fin && !fin.peek() != EOF){
-        //Variables needed
-        //Makes a temp task
-        Task tempTask; //int Day, char[] name, int duration, char[] person, int catagory
-        //Makes a task pointer
+        //Makes a temp task pointer
         Task* ptrTempTask = new Task;
         //Temporary int and char array
         int tempInt = 0;
@@ -48,7 +48,7 @@ Tasklist::Tasklist(istream &fin){
         ptrTempTask->setCat(tempInt); //Sets the catagory to the temp int
         fin.get(); // Remove delimiter
 
-        //tempTask should now be full
+        //ptrTempTask should now be full
 
         int pos = 0;
 
@@ -57,12 +57,10 @@ Tasklist::Tasklist(istream &fin){
             if (pos >= size) {
                 next = false;
             }
-            
             //Writes alphabetically (Not working and not needed?)
-            else if(strcmp(ptrTempTask->getName(), fullList[pos].getName()) > 0) {
+            else if(strcmp(ptrTempTask->getName(), fullPtrList[pos].getName()) > 0) {
                 pos++;
             } 
-            
             else {
                 next = false;
             }
@@ -94,24 +92,52 @@ void Tasklist::exportToFile(ofstream &is){
   
 }
 
+Tasklist::~Tasklist(){
+    if (fullPtrList != nullptr){
+        delete [] fullPtrList;
+        fullPtrList = nullptr;
+    }
+}
 
 void Tasklist::insert(Task* tempTask, size_t pos) {
-    for(size_t i = size + 1; i > pos; i-- ) {
-        fullList[i] = fullList[i-1];
-    }
-    
-    fullList[pos] = *tempTask;
+    //Currently fullList is one less than what we want
     size++;
+    //Makes a temp pointer that is one bigger than the current
+    Task* tempPtr = new Task[size];
+    
+    for (int i = 0; i < size; i++){
+        if (i < pos){
+            tempPtr[i] = fullPtrList[i];
+        }
+        else if (i > pos){
+            tempPtr[i] = fullPtrList[i-1];
+        }
+    }
+
+    //Sets the task to the correct position
+    tempPtr[pos] = *tempTask;
+    
+    //Deletes the current held list in the full list
+    if (fullPtrList != nullptr){
+        delete [] fullPtrList;
+    }
+    fullPtrList = new Task[size];
+    //Sets the full list to the tempPtr list.
+    for (int i = 0; i < size; i++){
+        fullPtrList[i] = tempPtr[i];
+    }
+    //Deletes the temp list
+    delete[] tempPtr;
 }
 
 void Tasklist::printAll(std::ostream &os){
     
     printGuide(os);
 
-    for (int i = 0; i < MAX_LISTSIZE; i++){
-        if(fullList[i].getCat() >= 0){
+    for (int i = 0; i < size; i++){
+        if(fullPtrList[i].getCat() >= 0){
             os.width(2); os << i + 1; 
-            fullList[i].printTask(os);
+            fullPtrList[i].printTask(os);
         }
     }
     os << endl;

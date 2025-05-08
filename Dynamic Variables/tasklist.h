@@ -14,6 +14,7 @@ public:
     static const size_t MAX_LISTSIZE = 30;
     Tasklist(); //Default constructor
     Tasklist(istream &fin); //Constructor using fin
+    ~Tasklist(); //Deconstructor
     void exportToFile(ofstream &is);//Not Done
     void insert(Task* tempAct, size_t pos);//Done
     void printAll(std::ostream &os);//Done
@@ -31,7 +32,7 @@ private:
     size_t size = 0; //Size of the list
     Task fullList[MAX_LISTSIZE]; //List of tasks
     
-    //Task* ptrfullList = nullptr;
+    Task* fullPtrList = nullptr;
 };
 
 #endif
