@@ -57,7 +57,7 @@ Tasklist::Tasklist(istream &fin){
             if (pos >= size) {
                 next = false;
             }
-            //Writes alphabetically (Not working and not needed?)
+            //Writes alphabetically (Not working?)
             else if(strcmp(ptrTempTask->getName(), fullPtrList[pos].getName()) > 0) {
                 pos++;
             } 
