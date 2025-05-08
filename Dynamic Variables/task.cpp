@@ -82,6 +82,10 @@ void Task::setAll(){
     
     cout << "Enter the task name (50 characters or less): ";
     cin.ignore(1);
+    if (taskName != nullptr){
+        delete[] taskName;
+    }
+
     writeSpace(taskName);
 
     cout << "Enter the person's name (50 characters or less): ";
@@ -203,14 +207,29 @@ void Task::writeFile(ofstream &is, char const DELIMITER){
 }
 
 //Insert a character array and it will write to it
-void Task::writeSpace(char arr[]){
+void Task::writeSpace(char* arr){
     char ch; 
     int cNum = 0; //Character num
+    char* temp = nullptr;
     
     //Writes until newline
     while (cin.get(ch) && ch != '\n') {
-      arr[cNum] = ch;
-      cNum++;
+        //Deletes temp if it is not a nullptr
+        if (temp != nullptr){
+            delete[] temp;
+        }
+        //Sets temp to cNum
+        temp = new char[cNum];//Makes a temp array the size of the num input
+
+        for (int i = 0; i < cNum; i++){
+            temp[i] = arr[i];//Sets temp to be the same as arr
+        }
+        temp[cNum] = ch;
+        if (arr != nullptr){
+            delete[] arr; //Deletes the array
+        }
+        //arr = temp; //Sets the array to temp 
+        cNum++;
     }
 }
 

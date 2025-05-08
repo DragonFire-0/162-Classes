@@ -10,10 +10,8 @@ Tasklist::Tasklist(istream &fin){
     //Declares fullPtrList as a task that is 'size' which should be 0
     fullPtrList = new Task[size];
     
-    
-    
     char const DELIMITER = ';';
-    static const size_t MAX_CHAR = 50;
+    
     //Reads in what all the data types are
     fin.getline(baseData[0], MAX_CHAR, DELIMITER);  //Day
     fin.getline(baseData[1], MAX_CHAR, DELIMITER);  //Task name
@@ -57,7 +55,7 @@ Tasklist::Tasklist(istream &fin){
             if (pos >= size) {
                 next = false;
             }
-            //Writes alphabetically (Not working?)
+            //Writes alphabetically
             else if(strcmp(ptrTempTask->getName(), fullPtrList[pos].getName()) > 0) {
                 pos++;
             } 
@@ -83,7 +81,7 @@ void Tasklist::exportToFile(ofstream &is){
     << baseData[4] << endl;
 
     for (int i = 0; i < size; i++){
-      fullList[i].writeFile(is, DELIMITER);
+      fullPtrList[i].writeFile(is, DELIMITER);
       //If it is not the last activity make a new line
       if (i < size-1){
         is << endl;
@@ -189,38 +187,42 @@ void Tasklist::listType(){
     printGuide(cout);
 
     for (int i = 0; i < size; i++){
-        if (fullList[i].getCat() == type){
-            fullList[i].printTask(cout);
+        if (fullPtrList[i].getCat() == type){
+            fullPtrList[i].printTask(cout);
         }
     }
 }
 
 void Tasklist::searchName(){
-    
-    char searchTerm[Task::MAX_CHAR];
+    char* searchTerm = nullptr;
+    //char searchTerm[MAX_CHAR];
 
     cout << "Enter task name: ";
     cin.ignore(1);
-    fullList[0].writeSpace(searchTerm);
+    fullPtrList[0].writeSpace(searchTerm);
     printGuide(cout);
 
-    char* pch = NULL; //Char pointer
+    char* stringPos = nullptr; //Char pointer
     bool found = false;
 
     for (int i = 0; i < size; i++){
-        //Sets pch to first occurence of searchTerm in the name
-        pch = strstr (fullList[i].getTaskName(), searchTerm); 
-        if (pch != NULL){ //If pch is not null
+        //Sets stringPos to first occurence of searchTerm in the name
+        stringPos = strstr (fullPtrList[i].getTaskName(), searchTerm); //Giving errors
+        
+        if (stringPos != nullptr){ //If pch is not a null pointer
         cout << i + 1;
-            fullList[i].printTask(cout);
+            fullPtrList[i].printTask(cout);
             found = true;
         }
     }
+
     if (!found){
         cout << "No task match found" << endl;
     }
+
     cout << endl;
-    delete[] pch;
+    delete[] searchTerm;
+    delete[] stringPos;
 }
 
 void Tasklist::remTask(){
@@ -231,7 +233,7 @@ void Tasklist::remTask(){
     index--; //Puts index in line with the actual index
     for (int i = 0; i < size; i++){
         if (i >= index){
-            fullList[i] = fullList[i+1];
+            fullPtrList[i] = fullPtrList[i+1];
         }
     }
     cout << endl << "Task Removed" << endl;

@@ -25,7 +25,7 @@ int main() {
     //Variable initilization
     char controlChar = {0};
 
-    ifstream fin = ifstream("tasks.txt"); 
+    ifstream fin = ifstream("task.txt"); 
     Tasklist fulList(fin);
     
     //Welcome message
